@@ -1,3 +1,17 @@
+const TOP_CITIES = ["Toronto", "Montreal", "Vancouver", "Calgary", "Edmonton",
+  "Ottawa", "Winnipeg", "Quebec City", "Hamilton", "Halifax"];
+
+function buildCityList() {
+  const list = document.getElementById("city-list");
+  TOP_CITIES.forEach((city) => {
+    const li = document.createElement("li");
+    li.textContent = city;
+    li.addEventListener("click", () => loadCityWeather(city));
+    list.appendChild(li);
+  });
+}
+
+buildCityList();
 function showLoading(isLoading) {
   document.getElementById("loading").hidden = !isLoading;
 }
@@ -34,6 +48,7 @@ async function loadCityWeather(cityName) {
     showLoading(false);
   }
 }
+
 function handleViewCity() {
   const input = document.getElementById("city-input");
   const cityName = input.value.trim();
@@ -46,15 +61,6 @@ function handleViewCity() {
 
 document.getElementById("view-city-btn").addEventListener("click", handleViewCity);
 
-function handleViewCity() {
-  const input = document.getElementById("city-input");
-  const cityName = input.value;
-  if (cityName === "") {
-    showError("Please type a city name.");
-    return;
-  }
-  loadCityWeather(cityName);
-}
 
 document.getElementById("view-city-btn").addEventListener("click", handleViewCity);
 function renderWeather(data) {
