@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mi webpage</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Finder</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>my webpage</h1>
-    <p>this is my webpage</p>
+  <header><h1>Weather Finder</h1></header>
+  <main>
+    <section id="search">
+      <input id="city-input" type="text" placeholder="Enter a Canadian city">
+      <button id="view-city-btn">View City</button>
+    </section>
+    <section id="status">
+      <p id="loading" hidden>Loading...</p>
+      <p id="error" hidden></p>
+    </section>
+    <section id="weather">
+      <h2 id="weather-city">No city selected</h2>
+      <p id="weather-temp"></p>
+      <p id="weather-wind"></p>
+      <p id="weather-extra"></p>
+    </section>
+    <section id="top10">
+      <h2>Top 10 Cities</h2>
+      <ul id="city-list"></ul>
+    </section>
+  </main>
+  <script src="app.js"></script>
 </body>
 </html>
