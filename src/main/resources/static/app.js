@@ -1,5 +1,5 @@
 const TOP_CITIES = ["Toronto", "Montreal", "Vancouver", "Calgary", "Edmonton",
-  "Ottawa", "Winnipeg", "Quebec City", "Hamilton", "Halifax"];
+  "Ottawa", "Winnipeg", "Quebec", "Hamilton", "Halifax"];
 
 function buildCityList() {
   const list = document.getElementById("city-list");
