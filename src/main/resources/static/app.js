@@ -22,6 +22,25 @@ function showError(message) {
   el.hidden = !message;
 }
 
+async function loadCityImage(cityName, province) {
+  const img = document.getElementById("weather-image");
+  img.hidden = true;
+  try {
+    const title = encodeURIComponent(cityName + ", " + province);
+    const response = await fetch(
+      `https://en.wikipedia.org/api/rest_v1/page/summary/${title}`
+    );
+    const data = await response.json();
+    if (data.thumbnail) {
+      img.src = data.thumbnail.source;
+      img.alt = "Photo of " + cityName;
+      img.hidden = false;
+    }
+  } catch (error) {
+    console.error("Failed to load city image:", error);
+  }
+}
+
 async function loadCityWeather(cityName) {
   showError("");
   showLoading(true);
