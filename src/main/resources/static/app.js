@@ -22,6 +22,25 @@ function showError(message) {
   el.hidden = !message;
 }
 
+async function loadCityImage(cityName, province) {
+  const img = document.getElementById("weather-image");
+  img.hidden = true;
+  try {
+    const title = encodeURIComponent(cityName + ", " + province);
+    const response = await fetch(
+      `https://en.wikipedia.org/api/rest_v1/page/summary/${title}`
+    );
+    const data = await response.json();
+    if (data.thumbnail) {
+      img.src = data.thumbnail.source;
+      img.alt = "Photo of " + cityName;
+      img.hidden = false;
+    }
+  } catch (error) {
+    console.error("Failed to load city image:", error);
+  }
+}
+
 async function loadCityWeather(cityName) {
   showError("");
   showLoading(true);
@@ -33,7 +52,7 @@ async function loadCityWeather(cityName) {
     if (!geo.results || geo.results.length === 0) {
       throw new Error(`Couldn't find a city called "${cityName}".`);
     }
-    const { latitude, longitude, name } = geo.results[0];
+    const { latitude, longitude, name, admin1 } = geo.results[0];
 
     const wxRes = await fetch(
       `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m,relative_humidity_2m`
@@ -42,6 +61,7 @@ async function loadCityWeather(cityName) {
     const wx = await wxRes.json();
 
     renderWeather({ name, current: wx.current, units: wx.current_units });
+    loadCityImage(name, admin1);
   } catch (err) {
     showError(err.message || "Something went wrong. Please try again.");
   } finally {
