@@ -1,1 +1,57 @@
-//placeholder for now
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 16px;
+  background: #f4f4f4;
+}
+
+header {
+  text-align: center;
+}
+
+main {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+section {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+#search {
+  display: flex;
+  gap: 8px;
+}
+
+#city-input {
+  flex: 1;
+  padding: 6px;
+}
+
+#error {
+  color: #b00020;
+}
+
+#weather-image {
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+#city-list li {
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+#city-list li:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  #search {
+    flex-direction: column;
+  }
+}
